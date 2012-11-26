@@ -1,0 +1,66 @@
+1. $ArrayURL = split('/', $_SERVER[REQUEST_URI])); => $ArrayURL = split('/', $_SERVER['REQUEST_URI']);
+2. if (is_object($data) = true) $status = '200 OK'; => if (is_object($data) == true) $status = '200 OK';
+3. $status_header = 'HTTP/1.1 $status'; => use doublequotes => $status_header = "HTTP/1.1 $status";
+4. CREATE TABLE Condo (
+    ID BIGINT AUTO_INCREMENT,
+    PID INT NOT NULL,
+    SwimmingPool TINYINT default 0,
+    INDEX idx_PID (PID), 
+    FOREIGN KEY (PID) REFERENCES Property(ID)
+) ENGINE=InnoDB;
+
+=> add auto increment
+
+CREATE TABLE Condo (
+    ID BIGINT AUTO_INCREMENT PRIMARY KEY,
+    PID INT NOT NULL,
+    SwimmingPool TINYINT default 0,
+    INDEX idx_PID (PID), 
+    FOREIGN KEY (PID) REFERENCES Property(ID)
+) ENGINE=InnoDB;
+
+
+5. public function get ($id, $field)
+    {
+        return $this->mysql->query("SELECT $field FROM $table WHERE ID = $id");
+    }
+    
+    =>
+    
+    public function get ($id, $field)
+    {
+        $res = $this->mysql->query("SELECT $field FROM $table WHERE ID = $id");
+          
+        /* free result set */
+        $this->mysql->free();
+    
+        return $res->fetch_assoc();
+    }
+    
+6. if ($this->mysql->connect_errno) {
+        echo "Failed to connect to MySQL: (" . $this->mysql->connect_errno . ") " . $this->mysql->connect_error;
+    }
+        
+    =>
+    
+    if ($this->mysql->connect_errno) {
+        echo "Failed to connect to MySQL: (" . $this->mysql->connect_errno . ") " . $this->mysql->connect_err;
+    }
+    
+7. public function getType ($ID) { $Type = $this->get( $ID, 'Type'); return $Type; }
+
+=> do not use getType , it is a php function.
+
+8. return json_encode( $data->getAll($id) ); => use echo instead return
+
+9. protected $hdbblock = null;
+    private $swimmingPool = null;
+    
+    => use public instead of protected and private
+    
+10. <!--//
+Get the data using ajax
+//-->
+
+=> no break line 
+<!--//Get the data using ajax//-->
