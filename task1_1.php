@@ -39,7 +39,7 @@ function multiple($value)
     } 
     if(fmod($value,5)==0)
     {
-        $res .= 'Buzz';
+        $res = 'Buzz';
     }
      
     if($res=='')
